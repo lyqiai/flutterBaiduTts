@@ -81,7 +81,9 @@ public class FlutterBaiduttsPlugin implements FlutterPlugin, MethodCallHandler, 
 
     @Override
     public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
-        mSpeechSynthesizer.release();
+        if (mSpeechSynthesizer != null) {
+            mSpeechSynthesizer.release();
+        }
     }
 
     public void init(@NonNull MethodCall call, @NonNull Result result) {
