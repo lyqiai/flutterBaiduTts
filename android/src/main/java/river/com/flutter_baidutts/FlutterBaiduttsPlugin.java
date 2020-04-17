@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
+import io.flutter.plugin.common.BinaryMessenger;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
@@ -31,9 +32,6 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
  * FlutterBaiduttsPlugin
  */
 public class FlutterBaiduttsPlugin implements FlutterPlugin, MethodCallHandler, ActivityAware, PluginRegistry.RequestPermissionsResultListener, IOfflineResourceConst {
-    private Context context;
-    static Activity activity;
-
     private SpeechSynthesizer mSpeechSynthesizer;
     private String appId;
     private String appKey;
@@ -42,30 +40,31 @@ public class FlutterBaiduttsPlugin implements FlutterPlugin, MethodCallHandler, 
     private OfflineResource offlineResource;
     private String TAG = "TTS";
     private int requestCode = 777;
+    private Context context;
+    public Activity activity;
+    private  MethodChannel channel;
 
     public FlutterBaiduttsPlugin() {
     }
 
-    public FlutterBaiduttsPlugin(Context context) {
-        this.context = context;
-    }
-
-    public FlutterBaiduttsPlugin(Context context, Activity activity) {
-        this.context = context;
-        this.activity = activity;
-    }
-
     @Override
     public void onAttachedToEngine(@NonNull FlutterPluginBinding flutterPluginBinding) {
-        final MethodChannel channel = new MethodChannel(flutterPluginBinding.getFlutterEngine().getDartExecutor(), "flutter_baidutts");
-        channel.setMethodCallHandler(new FlutterBaiduttsPlugin(flutterPluginBinding.getApplicationContext()));
+        onAttachedToEngine(flutterPluginBinding.getApplicationContext(), flutterPluginBinding.getBinaryMessenger());
     }
 
     public static void registerWith(Registrar registrar) {
-        FlutterBaiduttsPlugin plugin = new FlutterBaiduttsPlugin(registrar.context(), registrar.activity());
-        final MethodChannel channel = new MethodChannel(registrar.messenger(), "flutter_baidutts");
-        registrar.addRequestPermissionsResultListener(plugin);
-        channel.setMethodCallHandler(plugin);
+        final FlutterBaiduttsPlugin instance = new FlutterBaiduttsPlugin();
+
+        instance.activity = registrar.activity();
+        instance.onAttachedToEngine(registrar.context(), registrar.messenger());
+    }
+
+    public void onAttachedToEngine(Context context, BinaryMessenger messenger) {
+        this.context = context;
+
+        channel = new MethodChannel(messenger, "flutter_baidutts");
+
+        channel.setMethodCallHandler(this);
     }
 
     @Override
@@ -81,9 +80,10 @@ public class FlutterBaiduttsPlugin implements FlutterPlugin, MethodCallHandler, 
 
     @Override
     public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
-        if (mSpeechSynthesizer != null) {
-            mSpeechSynthesizer.release();
-        }
+        activity = null;
+        context = null;
+        channel.setMethodCallHandler(null);
+        channel = null;
     }
 
     public void init(@NonNull MethodCall call, @NonNull Result result) {
@@ -158,7 +158,6 @@ public class FlutterBaiduttsPlugin implements FlutterPlugin, MethodCallHandler, 
         result.success(res);
     }
 
-
     /**
      * 检查 TEXT_FILENAME, MODEL_FILENAME 这2个文件是否存在，不存在请自行从assets目录里手动复制
      *
@@ -198,7 +197,6 @@ public class FlutterBaiduttsPlugin implements FlutterPlugin, MethodCallHandler, 
         }
         return offlineResource;
     }
-
 
     private void initPermission() {
         String[] permissions = {

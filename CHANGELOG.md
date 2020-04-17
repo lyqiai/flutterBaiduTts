@@ -1,3 +1,6 @@
+## 0.0.4
+remove tts.release function
+
 ## 0.0.3
 fix crash when app exit on android
 
