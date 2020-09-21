@@ -12,13 +12,45 @@ public class SwiftFlutterBaiduttsPlugin: NSObject, FlutterPlugin {
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     if (call.method == "init") {
-        initTts(call, result: result)
+        initTts(call, result)
     } else if (call.method == "speak") {
-        speak(call, result: result)
+        speak(call, result)
+    } else if (call.method == "setVolume") {
+        setVolume(call, result)
+    } else if (call.method == "pause") {
+        pause(call, result)
+    } else if (call.method == "resume") {
+        resume(call, result)
+    } else if (call.method == "stop") {
+        stop(call, result)
     }
   }
+    
+    public func stop(_ call: FlutterMethodCall,_ result: @escaping FlutterResult) {
+        sharedInstance?.cancel()
+        result(0)
+    }
+    
+    public func resume(_ call: FlutterMethodCall,_ result: @escaping FlutterResult) {
+        sharedInstance?.resume()
+        result(0)
+    }
+    
+    public func pause(_ call: FlutterMethodCall,_ result: @escaping FlutterResult) {
+        sharedInstance?.pause()
+        result(0)
+    }
+    
+    public func setVolume(_ call: FlutterMethodCall,_ result: @escaping FlutterResult) {
+        let argements = call.arguments as! Dictionary<String, Double>
+        let volume = argements["volume"]!
+        
+        sharedInstance?.setPlayerVolume(Float(volume))
+        
+        result(0)
+    }
 
-    public func initTts(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+    public func initTts(_ call: FlutterMethodCall,_ result: @escaping FlutterResult) {
         let arguments = call.arguments as! Dictionary<String, String>
 
         let appId = arguments["appId"]
@@ -38,7 +70,7 @@ public class SwiftFlutterBaiduttsPlugin: NSObject, FlutterPlugin {
         result(err == nil ? 0 : -1)
     }
 
-    public func speak(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+    public func speak(_ call: FlutterMethodCall,_ result: @escaping FlutterResult) {
         let arguments = call.arguments as! Dictionary<String, String>
         let word = arguments["word"]
 

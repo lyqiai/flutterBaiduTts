@@ -1,3 +1,7 @@
+## 0.0.5
+support more api
+setVolume,pause,resume,stop
+
 ## 0.0.4
 remove tts.release function
 

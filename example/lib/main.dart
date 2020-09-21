@@ -5,9 +5,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   var res = await FlutterBaidutts.instance.init(
-    appId: '18808984',
-    appKey: 'MRt4YINZiHV60GtPM1lohgCC',
-    appSecret: 'Hdhum6GovTHXSEKShwl7rVemuYqLYO8w',
+    appId: '22722660',
+    appKey: 'X1Lh6ALA408BUI5bquxcLgVE',
+    appSecret: 'z9ayX40Ca3kxHzrORczSHfgChrN9lkTy',
   );
 
   print('init code: $res');
@@ -21,6 +21,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  double volume = 1.0;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,8 +36,43 @@ class _MyAppState extends State<MyApp> {
               FlatButton(
                 child: Text('speek'),
                 onPressed: () async {
-                  var flag = await FlutterBaidutts.instance.speak('你好，我是刘艳琦，英文名字是river');
-                  print(flag);
+                  final res = await FlutterBaidutts.instance.speak('你好，我是刘艳琦，英文名字是river');
+                  print("speek:$res");
+                },
+              ),
+              Row(
+                children: [
+                  Text('volume'),
+                  Expanded(
+                    child: Slider(
+                      value: volume,
+                      onChanged: (value) {
+                        setState(() {
+                          volume = value;
+                        });
+
+                        FlutterBaidutts.instance.setVolume(volume);
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              FlatButton(
+                child: Text('pause'),
+                onPressed: () async {
+                  FlutterBaidutts.instance.pause();
+                },
+              ),
+              FlatButton(
+                child: Text('resume'),
+                onPressed: () async {
+                  FlutterBaidutts.instance.resume();
+                },
+              ),
+              FlatButton(
+                child: Text('stop'),
+                onPressed: () async {
+                  FlutterBaidutts.instance.stop();
                 },
               ),
             ],

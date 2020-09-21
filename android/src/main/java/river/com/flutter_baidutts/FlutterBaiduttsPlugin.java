@@ -42,7 +42,7 @@ public class FlutterBaiduttsPlugin implements FlutterPlugin, MethodCallHandler, 
     private int requestCode = 777;
     private Context context;
     public Activity activity;
-    private  MethodChannel channel;
+    private MethodChannel channel;
 
     public FlutterBaiduttsPlugin() {
     }
@@ -73,9 +73,39 @@ public class FlutterBaiduttsPlugin implements FlutterPlugin, MethodCallHandler, 
             init(call, result);
         } else if (call.method.equals("speak")) {
             speak(call, result);
+        } else if (call.method.equals("setVolume")) {
+            setVolume(call, result);
+        } else if (call.method.equals("pause")) {
+            pause(call, result);
+        } else if (call.method.equals("resume")) {
+            resume(call, result);
+        } else if (call.method.equals("stop")) {
+            stop(call, result);
         } else {
             result.notImplemented();
         }
+    }
+
+    private void stop(MethodCall call, Result result) {
+        int res = mSpeechSynthesizer.stop();
+        result.success(res);
+    }
+
+    private void resume(MethodCall call, Result result) {
+        int res = mSpeechSynthesizer.resume();
+        result.success(res);
+    }
+
+    private void pause(MethodCall call, Result result) {
+        int res = mSpeechSynthesizer.pause();
+        result.success(res);
+    }
+
+    private void setVolume(MethodCall call, Result result) {
+        Double volume =  call.argument("volume");
+
+        int res = mSpeechSynthesizer.setStereoVolume(volume.floatValue(), volume.floatValue());
+        result.success(res);
     }
 
     @Override
@@ -96,7 +126,7 @@ public class FlutterBaiduttsPlugin implements FlutterPlugin, MethodCallHandler, 
         initPermission();
 
         //拷贝临时离线资源文件
-        offlineResource = createOfflineResource(VOICE_MALE);
+        offlineResource = createOfflineResource(VOICE_FEMALE);
 
         boolean isMixOrOffline = ttsMode.equals(TtsMode.MIX);
 
@@ -136,13 +166,9 @@ public class FlutterBaiduttsPlugin implements FlutterPlugin, MethodCallHandler, 
 
         // 4. 以下setParam 参数选填。不填写则默认值生效
         // 设置在线发声音人： 0 普通女声（默认） 1 普通男声 2 特别男声 3 情感男声<度逍遥> 4 情感儿童声<度丫丫>
-        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEAKER, "0");
+//        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEAKER, "0");
         // 设置合成的音量，0-15 ，默认 5
-        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_VOLUME, "9");
-        // 设置合成的语速，0-15 ，默认 5
-        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEED, "5");
-        // 设置合成的语调，0-15 ，默认 5
-        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_PITCH, "5");
+        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_VOLUME, "10");
 
         // 5. 初始化
         int code = mSpeechSynthesizer.initTts(ttsMode);
@@ -165,7 +191,7 @@ public class FlutterBaiduttsPlugin implements FlutterPlugin, MethodCallHandler, 
      */
     private boolean checkOfflineResources() {
         if (offlineResource == null) {
-            return  false;
+            return false;
         }
         String[] filenames = {offlineResource.getTextFilename(), offlineResource.getModelFilename()};
         for (String path : filenames) {
@@ -203,10 +229,8 @@ public class FlutterBaiduttsPlugin implements FlutterPlugin, MethodCallHandler, 
                 Manifest.permission.INTERNET,
                 Manifest.permission.ACCESS_NETWORK_STATE,
                 Manifest.permission.MODIFY_AUDIO_SETTINGS,
-                Manifest.permission.WRITE_SETTINGS,
                 Manifest.permission.ACCESS_WIFI_STATE,
-                Manifest.permission.CHANGE_WIFI_STATE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
+                Manifest.permission.CHANGE_WIFI_STATE
         };
 
         ArrayList<String> toApplyList = new ArrayList<>();

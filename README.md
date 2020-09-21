@@ -21,13 +21,24 @@ Add the obfuscated configuration to your file
 		appKey:'appKey',
 		appSecret:'appSecret',
 	);
-	
+
 
 2.just call speek function whatever you want to speek
 
 
 	FlutterBaidutts.instance.speek('speekWords');
-	
-	
-##	Future
-1. Mode Of Mix On Android
+
+# Apis:
+
+```
+Future<int> speak(String word); //Synthetic speech
+
+Future<int> setVolume(double volume); //Set the volume
+
+Future<int> pause(); //pause
+
+Future<int> resume(); //resume
+
+Future<int> stop(); //stop
+```
+

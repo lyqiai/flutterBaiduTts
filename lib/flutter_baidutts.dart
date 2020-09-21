@@ -4,6 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class FlutterBaidutts {
+  factory FlutterBaidutts() => _getInstance();
+
+  static FlutterBaidutts get instance => _getInstance();
+
+  static FlutterBaidutts _instance;
+
+  FlutterBaidutts._internal() {}
+
+  static FlutterBaidutts _getInstance() {
+    if (_instance == null) {
+      _instance = new FlutterBaidutts._internal();
+    }
+
+    return _instance;
+  }
+
   static const MethodChannel _channel = const MethodChannel('flutter_baidutts');
   String appId;
   String appKey;
@@ -21,25 +37,35 @@ class FlutterBaidutts {
     });
   }
 
+  //合成语音
   Future<int> speak(String word) async {
     return _channel.invokeMethod<int>('speak', {
       'word': word,
     });
   }
 
-  factory FlutterBaidutts() => _getInstance();
+  //设置音量
+  Future<int> setVolume(double volume) async {
+    assert(volume >= 0.0 && volume <= 1.0);
+    
+    return _channel.invokeMethod('setVolume', {
+      'volume': volume,
+    });
+  }
 
-  static FlutterBaidutts get instance => _getInstance();
+  //暂停播放
+  Future<int> pause() async {
+    return _channel.invokeMethod('pause');
+  }
 
-  static FlutterBaidutts _instance;
 
-  FlutterBaidutts._internal() {}
+  //恢复播放
+  Future<int> resume() async {
+    return _channel.invokeMethod('resume');
+  }
 
-  static FlutterBaidutts _getInstance() {
-    if (_instance == null) {
-      _instance = new FlutterBaidutts._internal();
-    }
-
-    return _instance;
+  //停止合成并停止播放
+  Future<int> stop() {
+    return _channel.invokeMethod('stop');
   }
 }
