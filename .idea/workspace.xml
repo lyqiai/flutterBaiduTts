@@ -5,16 +5,27 @@
       <config />
     </shared>
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="TTS" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="b816b033-36ee-4559-976f-893b3f283b08" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_baidutts/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_baidutts/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/main/java/river/com/flutter_baidutts/FlutterBaiduttsPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/android/src/main/java/river/com/flutter_baidutts/FlutterBaiduttsPlugin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_baidutts/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_baidutts/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_baidutts/android/src/main/java/river/com/flutter_baidutts/FlutterBaiduttsPlugin.java" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_baidutts/android/src/main/java/river/com/flutter_baidutts/FlutterBaiduttsPlugin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_baidutts/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_baidutts/example/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_baidutts/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_baidutts/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_baidutts/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/example/ios/.symlinks/plugins/flutter_baidutts/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/example/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/example/pubspec.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/pubspec.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +35,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_2_API_29" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[192.168.1.147:5555]" />
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -32,13 +43,14 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="dart.analysis.tool.window.force.activate" value="false" />
+    <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -78,9 +90,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -99,12 +109,33 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="452" y="271" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1600699797439">
       <screen x="44" y="23" width="1396" height="877" />
     </state>
     <state x="452" y="271" key="#com.intellij.fileTypes.FileTypeChooser/44.23.1396.877@44.23.1396.877" timestamp="1600699797439" />
+    <state width="1351" height="182" key="GridCell.Tab.0.bottom" timestamp="1609296076876">
+      <screen x="45" y="23" width="1395" height="877" />
+    </state>
+    <state width="1351" height="182" key="GridCell.Tab.0.bottom/45.23.1395.877@45.23.1395.877" timestamp="1609296076876" />
+    <state width="1351" height="466" key="GridCell.Tab.0.bottom/46.23.1394.877@46.23.1394.877" timestamp="1602296386876" />
+    <state width="1351" height="182" key="GridCell.Tab.0.center" timestamp="1609296076876">
+      <screen x="45" y="23" width="1395" height="877" />
+    </state>
+    <state width="1351" height="182" key="GridCell.Tab.0.center/45.23.1395.877@45.23.1395.877" timestamp="1609296076876" />
+    <state width="1351" height="466" key="GridCell.Tab.0.center/46.23.1394.877@46.23.1394.877" timestamp="1602296386875" />
+    <state width="1351" height="182" key="GridCell.Tab.0.left" timestamp="1609296076875">
+      <screen x="45" y="23" width="1395" height="877" />
+    </state>
+    <state width="1351" height="182" key="GridCell.Tab.0.left/45.23.1395.877@45.23.1395.877" timestamp="1609296076875" />
+    <state width="1351" height="466" key="GridCell.Tab.0.left/46.23.1394.877@46.23.1394.877" timestamp="1602296386875" />
+    <state width="1351" height="182" key="GridCell.Tab.0.right" timestamp="1609296076876">
+      <screen x="45" y="23" width="1395" height="877" />
+    </state>
+    <state width="1351" height="182" key="GridCell.Tab.0.right/45.23.1395.877@45.23.1395.877" timestamp="1609296076876" />
+    <state width="1351" height="466" key="GridCell.Tab.0.right/46.23.1394.877@46.23.1394.877" timestamp="1602296386875" />
     <state x="221" y="89" key="SettingsEditor" timestamp="1600687007902">
       <screen x="0" y="0" width="1440" height="900" />
     </state>

@@ -69,6 +69,7 @@ public class FlutterBaiduttsPlugin implements FlutterPlugin, MethodCallHandler, 
 
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
+        Log.i(TAG, "onMethodCall: " + call.method);
         if (call.method.equals("init")) {
             init(call, result);
         } else if (call.method.equals("speak")) {
@@ -166,7 +167,7 @@ public class FlutterBaiduttsPlugin implements FlutterPlugin, MethodCallHandler, 
 
         // 4. 以下setParam 参数选填。不填写则默认值生效
         // 设置在线发声音人： 0 普通女声（默认） 1 普通男声 2 特别男声 3 情感男声<度逍遥> 4 情感儿童声<度丫丫>
-//        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEAKER, "0");
+        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEAKER, "0");
         // 设置合成的音量，0-15 ，默认 5
         mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_VOLUME, "10");
 

@@ -5,9 +5,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   var res = await FlutterBaidutts.instance.init(
-    appId: '22722660',
-    appKey: 'X1Lh6ALA408BUI5bquxcLgVE',
-    appSecret: 'z9ayX40Ca3kxHzrORczSHfgChrN9lkTy',
+    appId: 'xxxxx',
+    appKey: 'xxxxx',
+    appSecret: 'xxxxx',
   );
 
   print('init code: $res');
@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
               FlatButton(
                 child: Text('speek'),
                 onPressed: () async {
-                  final res = await FlutterBaidutts.instance.speak('你好，我是刘艳琦，英文名字是river');
+                  final res = await FlutterBaidutts.instance.speak('你好，傻逼');
                   print("speek:$res");
                 },
               ),

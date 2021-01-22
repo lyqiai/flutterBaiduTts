@@ -1,3 +1,6 @@
+## 0.0.6
+change pubspec.yaml
+
 ## 0.0.5
 support more api
 setVolume,pause,resume,stop
