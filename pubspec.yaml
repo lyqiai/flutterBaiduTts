@@ -1,8 +1,6 @@
 name: flutter_baidutts
 description: flutter plugin for baidu tts
 version: 0.0.6
-authors:
-  - 296683519@qq.com
 homepage: https://github.com/lyqiai/flutterBaiduTts
 environment:
   sdk: ">=2.1.0 <3.0.0"
